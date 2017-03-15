@@ -21,70 +21,70 @@
 #define AUTO_MOVE 2
 #define AUTO_ZOOM 3
 
-GLuint  texture[1];  // ´æ´¢Ò»¸öÎÆÀí
-int windowID;  //¸¸´°¿ÚID
-float currentX[] = {1, 0, 0};  //µ±Ç°Ë®Æ½·½Ïò
-float currentY[] = {0, 1, 0};  //µ±Ç°´¹Ö±·½Ïò
-float currentMat[16] = {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };  //µ±Ç°Ä£ĞÍÊÓÍ¼¾ØÕó
-int currentOpt = -1;  //0ÉÏ£¬1ÏÂ£¬2×ó£¬3ÓÒ£¬ÆäËüÎŞ
-int currentZoom = -1; //0·Å´ó£¬1ËõĞ¡£¬ÆäËüÎŞ
-int currentMove = -1;  //0ÉÏ£¬1ÏÂ£¬2×ó£¬3ÓÒ£¬ÆäËüÎŞ
-int currentZoomState = 0; //¼ÇÂ¼µ±Ç°Ëõ·Å×´Ì¬
-float size = 1;  //ÎïÌå´óĞ¡
-int autoFlag = 0;  //0ÊÖ¶¯£¬1Ğı×ªÑİÊ¾£¬2Æ½ÒÆÑİÊ¾£¬3Ëõ·ÅÑİÊ¾
-int rotateSequence[] = { 0, 0, 0, -1, -1, 2, 2, 2, -1, -1, 1, 1, 1, 1, -1, -1, 2, 2, 2, -1, -1, 3, 3, 3 };  //×Ô¶¯Ğı×ªĞòÁĞ
-int currentRotateIndex = 0;  //×Ô¶¯Ğı×ªË÷Òı
-int moveSequence[] = { 0, 0, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 2, 2, -1, -1, -1, -1, 3, 3, -1, -1, 0, 0 }; //×Ô¶¯ÒÆ¶¯ĞòÁĞ
-int currentMoveIndex = 0;  //×Ô¶¯ÒÆ¶¯Ë÷Òı
-int zoomSequence[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };  //×Ô¶¯Ëõ·ÅĞòÁĞ
-int currentZoomIndex = 0;  //×Ô¶¯Ëõ·ÅË÷Òı
-int autoSpeed = 0; //¿ØÖÆ×Ô¶¯ÑİÊ¾ËÙÂÊ
+GLuint  texture[1];  // å­˜å‚¨ä¸€ä¸ªçº¹ç†
+int windowID;  //çˆ¶çª—å£ID
+float currentX[] = {1, 0, 0};  //å½“å‰æ°´å¹³æ–¹å‘
+float currentY[] = {0, 1, 0};  //å½“å‰å‚ç›´æ–¹å‘
+float currentMat[16] = {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };  //å½“å‰æ¨¡å‹è§†å›¾çŸ©é˜µ
+int currentOpt = -1;  //0ä¸Šï¼Œ1ä¸‹ï¼Œ2å·¦ï¼Œ3å³ï¼Œå…¶å®ƒæ— 
+int currentZoom = -1; //0æ”¾å¤§ï¼Œ1ç¼©å°ï¼Œå…¶å®ƒæ— 
+int currentMove = -1;  //0ä¸Šï¼Œ1ä¸‹ï¼Œ2å·¦ï¼Œ3å³ï¼Œå…¶å®ƒæ— 
+int currentZoomState = 0; //è®°å½•å½“å‰ç¼©æ”¾çŠ¶æ€
+float size = 1;  //ç‰©ä½“å¤§å°
+int autoFlag = 0;  //0æ‰‹åŠ¨ï¼Œ1æ—‹è½¬æ¼”ç¤ºï¼Œ2å¹³ç§»æ¼”ç¤ºï¼Œ3ç¼©æ”¾æ¼”ç¤º
+int rotateSequence[] = { 0, 0, 0, -1, -1, 2, 2, 2, -1, -1, 1, 1, 1, 1, -1, -1, 2, 2, 2, -1, -1, 3, 3, 3 };  //è‡ªåŠ¨æ—‹è½¬åºåˆ—
+int currentRotateIndex = 0;  //è‡ªåŠ¨æ—‹è½¬ç´¢å¼•
+int moveSequence[] = { 0, 0, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 2, 2, -1, -1, -1, -1, 3, 3, -1, -1, 0, 0 }; //è‡ªåŠ¨ç§»åŠ¨åºåˆ—
+int currentMoveIndex = 0;  //è‡ªåŠ¨ç§»åŠ¨ç´¢å¼•
+int zoomSequence[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };  //è‡ªåŠ¨ç¼©æ”¾åºåˆ—
+int currentZoomIndex = 0;  //è‡ªåŠ¨ç¼©æ”¾ç´¢å¼•
+int autoSpeed = 0; //æ§åˆ¶è‡ªåŠ¨æ¼”ç¤ºé€Ÿç‡
 
-AUX_RGBImageRec *LoadBMP(CHAR *Filename)    // ÔØÈëÎ»Í¼Í¼Ïó
+AUX_RGBImageRec *LoadBMP(CHAR *Filename)    // è½½å…¥ä½å›¾å›¾è±¡
 {
-	FILE *File = NULL;         // ÎÄ¼ş¾ä±ú
-	if (!Filename)          // È·±£ÎÄ¼şÃûÒÑÌá¹©
+	FILE *File = NULL;         // æ–‡ä»¶å¥æŸ„
+	if (!Filename)          // ç¡®ä¿æ–‡ä»¶åå·²æä¾›
 	{
-		return NULL;         // Èç¹ûÃ»Ìá¹©£¬·µ»Ø NULL
+		return NULL;         // å¦‚æœæ²¡æä¾›ï¼Œè¿”å› NULL
 	}
-	File = fopen(Filename, "r");       // ³¢ÊÔ´ò¿ªÎÄ¼ş
-	if (File)           // ÎÄ¼ş´æÔÚÃ´?
+	File = fopen(Filename, "r");       // å°è¯•æ‰“å¼€æ–‡ä»¶
+	if (File)           // æ–‡ä»¶å­˜åœ¨ä¹ˆ?
 	{
-		fclose(File);         // ¹Ø±Õ¾ä±ú
-		return auxDIBImageLoadA(Filename);    // ÔØÈëÎ»Í¼²¢·µ»ØÖ¸Õë
+		fclose(File);         // å…³é—­å¥æŸ„
+		return auxDIBImageLoadA(Filename);    // è½½å…¥ä½å›¾å¹¶è¿”å›æŒ‡é’ˆ
 	}
-	return NULL;          // Èç¹ûÔØÈëÊ§°Ü£¬·µ»Ø NULL
+	return NULL;          // å¦‚æœè½½å…¥å¤±è´¥ï¼Œè¿”å› NULL
 }
 
-int LoadGLTextures()         // ÔØÈëÎ»Í¼(µ÷ÓÃÉÏÃæµÄ´úÂë)²¢×ª»»³ÉÎÆÀí
+int LoadGLTextures()         // è½½å…¥ä½å›¾(è°ƒç”¨ä¸Šé¢çš„ä»£ç )å¹¶è½¬æ¢æˆçº¹ç†
 {
-	int Status = FALSE;         // ×´Ì¬Ö¸Ê¾Æ÷
-	AUX_RGBImageRec *TextureImage[1];     // ´´½¨ÎÆÀíµÄ´æ´¢¿Õ¼ä
-	memset(TextureImage, 0, sizeof(void *)* 1);   // ½«Ö¸ÕëÉèÎª NULL
-	// ÔØÈëÎ»Í¼£¬¼ì²éÓĞÎŞ´íÎó£¬Èç¹ûÎ»Í¼Ã»ÕÒµ½ÔòÍË³ö
+	int Status = FALSE;         // çŠ¶æ€æŒ‡ç¤ºå™¨
+	AUX_RGBImageRec *TextureImage[1];     // åˆ›å»ºçº¹ç†çš„å­˜å‚¨ç©ºé—´
+	memset(TextureImage, 0, sizeof(void *)* 1);   // å°†æŒ‡é’ˆè®¾ä¸º NULL
+	// è½½å…¥ä½å›¾ï¼Œæ£€æŸ¥æœ‰æ— é”™è¯¯ï¼Œå¦‚æœä½å›¾æ²¡æ‰¾åˆ°åˆ™é€€å‡º
 	if (TextureImage[0] = LoadBMP("Daochen_Zha.bmp"))
 	{
-		Status = TRUE;         // ½« Status ÉèÎª TRUE
-		glGenTextures(1, &texture[0]);     // ´´½¨ÎÆÀí
-		// Ê¹ÓÃÀ´×ÔÎ»Í¼Êı¾İÉú³É µÄµäĞÍÎÆÀí
+		Status = TRUE;         // å°† Status è®¾ä¸º TRUE
+		glGenTextures(1, &texture[0]);     // åˆ›å»ºçº¹ç†
+		// ä½¿ç”¨æ¥è‡ªä½å›¾æ•°æ®ç”Ÿæˆ çš„å…¸å‹çº¹ç†
 		glBindTexture(GL_TEXTURE_2D, texture[0]);
-		// Éú³ÉÎÆÀí
+		// ç”Ÿæˆçº¹ç†
 		glTexImage2D(GL_TEXTURE_2D, 0, 3, TextureImage[0]->sizeX, TextureImage[0]->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE, TextureImage[0]->data);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // ÏßĞÎÂË²¨
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // ÏßĞÎÂË²¨
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // çº¿å½¢æ»¤æ³¢
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // çº¿å½¢æ»¤æ³¢
 	}
-	if (TextureImage[0])        // ÎÆÀíÊÇ·ñ´æÔÚ
+	if (TextureImage[0])        // çº¹ç†æ˜¯å¦å­˜åœ¨
 	{
-		if (TextureImage[0]->data)      // ÎÆÀíÍ¼ÏñÊÇ·ñ´æÔÚ
+		if (TextureImage[0]->data)      // çº¹ç†å›¾åƒæ˜¯å¦å­˜åœ¨
 		{
-			free(TextureImage[0]->data);    // ÊÍ·ÅÎÆÀíÍ¼ÏñÕ¼ÓÃµÄÄÚ´æ
+			free(TextureImage[0]->data);    // é‡Šæ”¾çº¹ç†å›¾åƒå ç”¨çš„å†…å­˜
 		}
-		free(TextureImage[0]);       // ÊÍ·ÅÍ¼Ïñ½á¹¹
+		free(TextureImage[0]);       // é‡Šæ”¾å›¾åƒç»“æ„
 	}
-	return Status;          // ·µ»Ø Status
+	return Status;          // è¿”å› Status
 }
 
-//Ñ¡Ôñ×ÖÌå
+//é€‰æ‹©å­—ä½“
 void selectFont(int size, int charset, const char* face) {
 	HFONT hFont = CreateFontA(size, 0, 0, 0, FW_MEDIUM, 0, 0, 0,
 		charset, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
@@ -93,36 +93,36 @@ void selectFont(int size, int charset, const char* face) {
 	DeleteObject(hOldFont);
 }
 
-//´òÓ¡×Ö·û
+//æ‰“å°å­—ç¬¦
 void drawString(const char* str) {
 	static int isFirstCall = 1;
 	static GLuint lists;
 
-	if (isFirstCall) { // Èç¹ûÊÇµÚÒ»´Îµ÷ÓÃ£¬Ö´ĞĞ³õÊ¼»¯
-		// ÎªÃ¿Ò»¸öASCII×Ö·û²úÉúÒ»¸öÏÔÊ¾ÁĞ±í
+	if (isFirstCall) { // å¦‚æœæ˜¯ç¬¬ä¸€æ¬¡è°ƒç”¨ï¼Œæ‰§è¡Œåˆå§‹åŒ–
+		// ä¸ºæ¯ä¸€ä¸ªASCIIå­—ç¬¦äº§ç”Ÿä¸€ä¸ªæ˜¾ç¤ºåˆ—è¡¨
 		isFirstCall = 0;
 
-		// ÉêÇëMAX_CHAR¸öÁ¬ĞøµÄÏÔÊ¾ÁĞ±í±àºÅ
+		// ç”³è¯·MAX_CHARä¸ªè¿ç»­çš„æ˜¾ç¤ºåˆ—è¡¨ç¼–å·
 		lists = glGenLists(MAX_CHAR);
 
-		// °ÑÃ¿¸ö×Ö·ûµÄ»æÖÆÃüÁî¶¼×°µ½¶ÔÓ¦µÄÏÔÊ¾ÁĞ±íÖĞ
+		// æŠŠæ¯ä¸ªå­—ç¬¦çš„ç»˜åˆ¶å‘½ä»¤éƒ½è£…åˆ°å¯¹åº”çš„æ˜¾ç¤ºåˆ—è¡¨ä¸­
 		wglUseFontBitmaps(wglGetCurrentDC(), 0, MAX_CHAR, lists);
 	}
-	// µ÷ÓÃÃ¿¸ö×Ö·û¶ÔÓ¦µÄÏÔÊ¾ÁĞ±í£¬»æÖÆÃ¿¸ö×Ö·û
+	// è°ƒç”¨æ¯ä¸ªå­—ç¬¦å¯¹åº”çš„æ˜¾ç¤ºåˆ—è¡¨ï¼Œç»˜åˆ¶æ¯ä¸ªå­—ç¬¦
 	for (; *str != '\0'; ++str)
 		glCallList(lists + *str);
 }
 
-//´òÓ¡ÖĞÎÄ×Ö·û
+//æ‰“å°ä¸­æ–‡å­—ç¬¦
 void drawCNString(const char* str) {
 	int len, i;
 	wchar_t* wstring;
 	HDC hDC = wglGetCurrentDC();
 	GLuint list = glGenLists(1);
 
-	// ¼ÆËã×Ö·ûµÄ¸öÊı
-	// Èç¹ûÊÇË«×Ö½Ú×Ö·ûµÄ£¨±ÈÈçÖĞÎÄ×Ö·û£©£¬Á½¸ö×Ö½Ú²ÅËãÒ»¸ö×Ö·û
-	// ·ñÔòÒ»¸ö×Ö½ÚËãÒ»¸ö×Ö·û
+	// è®¡ç®—å­—ç¬¦çš„ä¸ªæ•°
+	// å¦‚æœæ˜¯åŒå­—èŠ‚å­—ç¬¦çš„ï¼ˆæ¯”å¦‚ä¸­æ–‡å­—ç¬¦ï¼‰ï¼Œä¸¤ä¸ªå­—èŠ‚æ‰ç®—ä¸€ä¸ªå­—ç¬¦
+	// å¦åˆ™ä¸€ä¸ªå­—èŠ‚ç®—ä¸€ä¸ªå­—ç¬¦
 	len = 0;
 	for (i = 0; str[i] != '\0'; ++i)
 	{
@@ -131,71 +131,71 @@ void drawCNString(const char* str) {
 		++len;
 	}
 
-	// ½«»ìºÏ×Ö·û×ª»¯Îª¿í×Ö·û
+	// å°†æ··åˆå­—ç¬¦è½¬åŒ–ä¸ºå®½å­—ç¬¦
 	wstring = (wchar_t*)malloc((len + 1) * sizeof(wchar_t));
 	MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, str, -1, wstring, len);
 	wstring[len] = L'\0';
 
-	// Öğ¸öÊä³ö×Ö·û
+	// é€ä¸ªè¾“å‡ºå­—ç¬¦
 	for (i = 0; i<len; ++i)
 	{
 		wglUseFontBitmapsW(hDC, wstring[i], 1, list);
 		glCallList(list);
 	}
 
-	// »ØÊÕËùÓĞÁÙÊ±×ÊÔ´
+	// å›æ”¶æ‰€æœ‰ä¸´æ—¶èµ„æº
 	free(wstring);
 	glDeleteLists(list, 1);
 }
 
-// »æÖÆÁ¢·½Ìå
+// ç»˜åˆ¶ç«‹æ–¹ä½“
 void drawCube(void)
 {
-	glBindTexture(GL_TEXTURE_2D, texture[0]);      // Ñ¡ÔñÎÆÀí
+	glBindTexture(GL_TEXTURE_2D, texture[0]);      // é€‰æ‹©çº¹ç†
 
 	glColor3f(1.0f, 1.0f, 1.0f);
 	glBegin(GL_QUADS);
 
-	// Ç°Ãæ
+	// å‰é¢
 	glNormal3f(0, 0, 1);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f, -0.5f, 0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄ×óÏÂ
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(0.5f, -0.5f, 0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄÓÒÏÂ
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(0.5f, 0.5f, 0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄÓÒÉÏ
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(-0.5f, 0.5f, 0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄ×óÉÏ
-	// ºóÃæ
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f, -0.5f, 0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å·¦ä¸‹
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(0.5f, -0.5f, 0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å³ä¸‹
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(0.5f, 0.5f, 0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å³ä¸Š
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(-0.5f, 0.5f, 0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å·¦ä¸Š
+	// åé¢
 	glNormal3f(0, 0, -1);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(-0.5f, -0.5f, -0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄÓÒÏÂ
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(-0.5f, 0.5f, -0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄÓÒÉÏ
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(0.5f, 0.5f, -0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄ×óÉÏ
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(0.5f, -0.5f, -0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄ×óÏÂ
-	// ¶¥Ãæ
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(-0.5f, -0.5f, -0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å³ä¸‹
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(-0.5f, 0.5f, -0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å³ä¸Š
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(0.5f, 0.5f, -0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å·¦ä¸Š
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(0.5f, -0.5f, -0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å·¦ä¸‹
+	// é¡¶é¢
 	glNormal3f(0, 1, 0);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(-0.5f, 0.5f, -0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄ×óÉÏ
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f, 0.5f, 0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄ×óÏÂ
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(0.5f, 0.5f, 0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄÓÒÏÂ
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(0.5f, 0.5f, -0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄÓÒÉÏ
-	// µ×Ãæ
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(-0.5f, 0.5f, -0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å·¦ä¸Š
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f, 0.5f, 0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å·¦ä¸‹
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(0.5f, 0.5f, 0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å³ä¸‹
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(0.5f, 0.5f, -0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å³ä¸Š
+	// åº•é¢
 	glNormal3f(0, -1, 0);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(-0.5f, -0.5f, -0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄÓÒÉÏ
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(0.5f, -0.5f, -0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄ×óÉÏ
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(0.5f, -0.5f, 0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄ×óÏÂ
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(-0.5f, -0.5f, 0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄÓÒÏÂ
-	// ÓÒÃæ
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(-0.5f, -0.5f, -0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å³ä¸Š
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(0.5f, -0.5f, -0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å·¦ä¸Š
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(0.5f, -0.5f, 0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å·¦ä¸‹
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(-0.5f, -0.5f, 0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å³ä¸‹
+	// å³é¢
 	glNormal3f(1, 0, 0);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(0.5f, -0.5f, -0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄÓÒÏÂ
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(0.5f, 0.5f, -0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄÓÒÉÏ
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(0.5f, 0.5f, 0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄ×óÉÏ
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(0.5f, -0.5f, 0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄ×óÏÂ
-	// ×óÃæ
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(0.5f, -0.5f, -0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å³ä¸‹
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(0.5f, 0.5f, -0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å³ä¸Š
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(0.5f, 0.5f, 0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å·¦ä¸Š
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(0.5f, -0.5f, 0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å·¦ä¸‹
+	// å·¦é¢
 	glNormal3f(-1, 0, 0);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f, -0.5f, -0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄ×óÏÂ
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(-0.5f, -0.5f, 0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄÓÒÏÂ
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(-0.5f, 0.5f, 0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄÓÒÉÏ
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(-0.5f, 0.5f, -0.5f); // ÎÆÀíºÍËÄ±ßĞÎµÄ×óÉÏ
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f, -0.5f, -0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å·¦ä¸‹
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(-0.5f, -0.5f, 0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å³ä¸‹
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(-0.5f, 0.5f, 0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å³ä¸Š
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(-0.5f, 0.5f, -0.5f); // çº¹ç†å’Œå››è¾¹å½¢çš„å·¦ä¸Š
 	glEnd();
 }
 
-//ÈıÎ¬ÏòÁ¿Ğı×ªº¯Êı
+//ä¸‰ç»´å‘é‡æ—‹è½¬å‡½æ•°
 void rotateVector(float* vector, float* axis, float rad)
 {
 	float x1 = vector[0];
@@ -216,10 +216,10 @@ void rotateVector(float* vector, float* axis, float rad)
 		(pow(z2, 2) + (1 - pow(z2, 2))*cos(rad)) * z1;;
 }
 
-//äÖÈ¾º¯Êı
+//æ¸²æŸ“å‡½æ•°
 void renderScene(void)
 {
-	//Ê¶±ğÏÂÒ»¸ö×Ô¶¯Ä£Ê½²Ù×÷
+	//è¯†åˆ«ä¸‹ä¸€ä¸ªè‡ªåŠ¨æ¨¡å¼æ“ä½œ
 	if (autoFlag == 1) {
 		autoSpeed++;
 		currentOpt = rotateSequence[currentRotateIndex];
@@ -260,43 +260,43 @@ void renderScene(void)
 	glLoadMatrixf(currentMat);
 	glPushMatrix();
 
-	//´¦ÀíÆ½ÒÆ²Ù×÷
+	//å¤„ç†å¹³ç§»æ“ä½œ
 	if (currentMove == 0)
 	{
-		glTranslatef(currentY[0] / 50, currentY[1] / 50, currentY[2] / 50); // Æ½ÒÆ
+		glTranslatef(currentY[0] / 50, currentY[1] / 50, currentY[2] / 50); // å¹³ç§»
 		currentMove = -1;
 	}
 	else if (currentMove == 1)
 	{
-		glTranslatef(-currentY[0] / 50, -currentY[1] / 50, -currentY[2] / 50); // Æ½ÒÆ
+		glTranslatef(-currentY[0] / 50, -currentY[1] / 50, -currentY[2] / 50); // å¹³ç§»
 		currentMove = -1;
 	}
 	else if (currentMove == 2)
 	{
-		glTranslatef(-currentX[0] / 50, -currentX[1] / 50, -currentX[2] / 50); // Æ½ÒÆ
+		glTranslatef(-currentX[0] / 50, -currentX[1] / 50, -currentX[2] / 50); // å¹³ç§»
 		currentMove = -1;
 	}
 	else if (currentMove == 3)
 	{
-		glTranslatef(currentX[0] / 50, currentX[1] / 50, currentX[2] / 50); // Æ½ÒÆ
+		glTranslatef(currentX[0] / 50, currentX[1] / 50, currentX[2] / 50); // å¹³ç§»
 		currentMove = -1;
 	}
 
-	//´¦ÀíËõ·Å²Ù×÷
+	//å¤„ç†ç¼©æ”¾æ“ä½œ
 	if (currentZoom == 1 && currentZoomState > -20)
 	{
-		glScalef(0.98, 0.98, 0.98);    // Ëõ·Å
+		glScalef(0.98, 0.98, 0.98);    // ç¼©æ”¾
 		currentZoom = -1;
 		currentZoomState--;
 	}
 	else if (currentZoom == 0 && currentZoomState < 7)
 	{
-		glScalef(1.02, 1.02, 1.02);    // Ëõ·Å
+		glScalef(1.02, 1.02, 1.02);    // ç¼©æ”¾
 		currentZoom = -1;
 		currentZoomState++;
 	}
 
-	//´¦ÀíĞı×ª²Ù×÷
+	//å¤„ç†æ—‹è½¬æ“ä½œ
 	if (currentOpt == 0) {
 		glRotatef(-3, currentX[0], currentX[1], currentX[2]);
 		currentOpt = -1;
@@ -331,20 +331,20 @@ void renderScene(void)
 	glRasterPos2f(0.7f, -0.95f);
 	drawString("Daochen Zha");
 	glRasterPos2f(-1.0f, 0.95f);
-	drawCNString("²Ù×÷ËµÃ÷£º");
+	drawCNString("æ“ä½œè¯´æ˜ï¼š");
 	glRasterPos2f(-1.0f, 0.90f);
-	drawCNString("WASDĞı×ª");
+	drawCNString("WASDæ—‹è½¬");
 	glRasterPos2f(-1.0f, 0.85f);
-	drawCNString("IJKLÆ½ÒÆ");
+	drawCNString("IJKLå¹³ç§»");
 	glRasterPos2f(-1.0f, 0.80f);
-	drawCNString("ZXËõ·Å");
+	drawCNString("ZXç¼©æ”¾");
 	glRasterPos2f(-1.0f, 0.75f);
-	drawCNString("ÓÒ¼ü´ò¿ª²Ëµ¥");
+	drawCNString("å³é”®æ‰“å¼€èœå•");
 	glPopMatrix();
 	glutSwapBuffers();
 }
 
-//´¦Àí¼üÅÌÊäÈë
+//å¤„ç†é”®ç›˜è¾“å…¥
 void keyboard(unsigned char key, int x, int y)
 {
 	if (!autoFlag) {
@@ -381,19 +381,19 @@ void keyboard(unsigned char key, int x, int y)
 	}
 }
 
-//³õÊ¼»¯º¯Êı
+//åˆå§‹åŒ–å‡½æ•°
 void init(void)
 {
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);            //ÇåÀíÑÕÉ«£¬ÎªºÚÉ«£¬£¨Ò²¿ÉÈÏÎªÊÇ±³¾°ÑÕÉ«£©
-	glCullFace(GL_BACK);                        //±³Ãæ²Ã¼ô(±³Ãæ²»¿É¼û)
-	glEnable(GL_CULL_FACE);                        //ÆôÓÃ²Ã¼ô
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);            //æ¸…ç†é¢œè‰²ï¼Œä¸ºé»‘è‰²ï¼Œï¼ˆä¹Ÿå¯è®¤ä¸ºæ˜¯èƒŒæ™¯é¢œè‰²ï¼‰
+	glCullFace(GL_BACK);                        //èƒŒé¢è£å‰ª(èƒŒé¢ä¸å¯è§)
+	glEnable(GL_CULL_FACE);                        //å¯ç”¨è£å‰ª
 	glEnable(GL_TEXTURE_2D);
-	LoadGLTextures();            //ÔØÈëÎÆÀíÌùÍ¼
+	LoadGLTextures();            //è½½å…¥çº¹ç†è´´å›¾
 }
 
 
 void processMenuEvents(int option) {
-	//option£¬¾ÍÊÇ´«µİ¹ıÀ´µÄvalueµÄÖµ¡£
+	//optionï¼Œå°±æ˜¯ä¼ é€’è¿‡æ¥çš„valueçš„å€¼ã€‚
 	switch (option) {
 	case AUTO_ROTATE:
 		autoFlag = 1;
@@ -416,25 +416,25 @@ void processMenuEvents(int option) {
 	}
 }
 
-//´´½¨²Ëµ¥
+//åˆ›å»ºèœå•
 void createGLUTMenus() {
 
 	int menu;
 	int submenu;
 	
-	//´´½¨×Ó²Ëµ¥
+	//åˆ›å»ºå­èœå•
 	submenu = glutCreateMenu(processMenuEvents);
-	glutAddMenuEntry("Ğı×ªÑİÊ¾", AUTO_ROTATE);
-	glutAddMenuEntry("Æ½ÒÆÑİÊ¾", AUTO_MOVE);
-	glutAddMenuEntry("Ëõ·ÅÑİÊ¾", AUTO_ZOOM);
+	glutAddMenuEntry("æ—‹è½¬æ¼”ç¤º", AUTO_ROTATE);
+	glutAddMenuEntry("å¹³ç§»æ¼”ç¤º", AUTO_MOVE);
+	glutAddMenuEntry("ç¼©æ”¾æ¼”ç¤º", AUTO_ZOOM);
 
 
-	//´´½¨Ö÷²Ëµ¥
+	//åˆ›å»ºä¸»èœå•
 	menu = glutCreateMenu(processMenuEvents);
-	glutAddMenuEntry("ÊÖ¶¯¿ØÖÆ", NO_AUTO);
-	glutAddSubMenu("×Ô¶¯ÑİÊ¾", submenu);
+	glutAddMenuEntry("æ‰‹åŠ¨æ§åˆ¶", NO_AUTO);
+	glutAddSubMenu("è‡ªåŠ¨æ¼”ç¤º", submenu);
 
-	// °Ñ²Ëµ¥ºÍÊó±êÓÒ¼ü¹ØÁªÆğÀ´¡£
+	// æŠŠèœå•å’Œé¼ æ ‡å³é”®å…³è”èµ·æ¥ã€‚
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
 
@@ -444,7 +444,7 @@ void main(int argc, char **argv)
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(100, 100);
 	glutInitWindowSize(500, 500);
-	windowID = glutCreateWindow("¶¯Ì¬Õı·½Ìå By ²éµÀè¡2014301500040");
+	windowID = glutCreateWindow("åŠ¨æ€æ­£æ–¹ä½“ By Daochen Zha");
 	init();
 
 	glutKeyboardFunc(keyboard);
